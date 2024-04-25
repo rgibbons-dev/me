@@ -1,0 +1,23 @@
+---
+layout: base.njk
+---
+
+<h1>{{ title }}</h1>
+
+{# `toZoneletsPostDate` is a custom filter from our `.eleventy.js` config file. #}
+<h4 role="presentation">{{ page.date | toZoneletsPostDate }}</h4>
+
+{{ content | safe }}
+
+{# The `get*CollectionItem` filters are provided by Eleventy for working with collections. #}
+{% set prevPost = (collections.blogPosts | getPreviousCollectionItem) %}
+{% set nextPost = (collections.blogPosts | getNextCollectionItem) %}
+<nav id="nextprev" aria-label="Blog">
+	{% if nextPost %}
+		<a href="{{ nextPost.page.url }}">« Next Post</a> |
+	{% endif %}
+	<a href="/">Home</a>
+	{% if prevPost %}
+		| <a href="{{ prevPost.page.url }}">Previous Post »</a>
+	{% endif %}
+</nav>

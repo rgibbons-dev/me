@@ -1,0 +1,45 @@
+{#
+	`postlist` is a Nunjucks macro that returns a list of posts, starting with the most recent.
+
+	Before using a macro in another template, we need to import it:
+		{% from 'postlist.njk' import postlist %}
+
+	`postlist` takes three arguments: `posts` (an Eleventy collection - see https://www.11ty.dev/docs/collections/), `recentPostsCutoff` (a maximum number of posts to show), and `more` (a URL to a page with an uncut list of posts).
+
+	These arguments can be passed either by name (in any order):
+		{{ postlist(posts = collections.kitty, recentPostsCutoff = 5, more = '/my-cat-archive/') }}
+		{{ postlist(recentPostsCutoff = 5, more = '/my-cat-archive/', posts = collections.kitty) }}
+	or by position (in the same order they're defined):
+		{{ postlist(collections.kitty, 5, '/my-cat-archive/') }}
+	In all three of those examples, we'd get a list of the five most recent pages with 'kitty' in their `tags`.
+
+	The only required argument is `posts`! The others are optional. If `recentPostsCutoff` is omitted, the list will include all matches. If `more` is omitted, the link will be omitted too.
+	This means we can get a list of *all* pages tagged 'kitty', again by name:
+		{{ postlist(posts = collections.kitty) }}
+	or by position:
+		{{ postlist(collections.kitty) }}
+
+	See https://mozilla.github.io/nunjucks/templating.html#macro for more about macros!
+#}
+
+{% macro postlist(posts, recentPostsCutoff, more) -%}
+	<div id="{{ 'recentpostlistdiv' if recentPostsCutoff else 'postlistdiv' }}">
+		{%- if recentPostsCutoff %}
+			<h2>Recent Posts:</h2>
+		{%- endif %}
+		<ul>
+			{#- The `reverse` filter is built into Nunjucks; `limit` is a custom filter from our `.eleventy.js` config file. #}
+			{%- for post in (posts | reverse | limit(recentPostsCutoff)) %}
+				<li>
+					<a href="{{ post.page.url }}">
+						{#- `toISODate` is another custom filter. #}
+						{{ post.page.date | toISODate }} » {{ post.data.title }}
+					</a>
+				</li>
+			{%- endfor %}
+			{%- if more and (posts.length > recentPostsCutoff) %}
+				<li class="moreposts"><a href="{{ more }}">» more posts</a></li>
+			{%- endif %}
+		</ul>
+	</div>
+{% endmacro %}

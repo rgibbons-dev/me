@@ -1,0 +1,9 @@
+---
+title: Archive
+layout: base.njk
+---
+
+<h1>{{ title }}</h1>
+
+{% from 'postlist.njk' import postlist %}
+{{ postlist(collections.blogPosts) }}
