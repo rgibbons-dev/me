@@ -1,5 +1,5 @@
-# Eleventy-Zones
+# me
 
-This is a starter project for making [Zonelets](https://zonelets.net/)-style blogs with the static site generator [Eleventy](https://www.11ty.dev/).
+blog and personal website
 
-Setup guide on the demo site: <https://cypressSap.codeberg.page/11ty-zones-demo/>
+many thanks to cypressSap for the cool starter template, check it out [here](https://cypressSap.codeberg.page/11ty-zones-demo/).
