@@ -31,6 +31,6 @@ module.exports = function (eleventyConfig) {
 
 	return {
 		// Update this if you're deploying your site to a subdirectory. (https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix)
-		pathPrefix: '/me/',
+		pathPrefix: '/',
 	};
 };
