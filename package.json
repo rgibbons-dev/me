@@ -1,14 +1,17 @@
 {
-	"name": "11ty-zones",
+	"name": "me",
 	"version": "1.0.0",
-	"description": "An Eleventy starter project for making Zonelets-style blogs.",
-	"homepage": "https://codeberg.org/cypressSap/11ty-zones",
-	"bugs": "https://codeberg.org/cypressSap/11ty-zones/issues",
+	"description": "justme. my blog",
 	"license": "MIT",
-	"author": "cypressSap (https://codeberg.org/cypressSap)",
-	"repository": {
-		"type": "git",
-		"url": "https://codeberg.org/cypressSap/11ty-zones.git"
+	"author": "Ryan Gibbons",
+	"contributors": [
+		{
+			"name": "cypressSap",
+			"url": "https://codeberg.org/cypressSap"
+		}
+	],
+	"scripts": {
+		"build": "npx @11ty/eleventy"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^2.0.1",
