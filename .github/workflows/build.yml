@@ -40,6 +40,9 @@ jobs:
       #     path: ./.cache
       #     key: ${{ runner.os }}-eleventy-fetch-cache
 
+      - name: install
+        run: npm install
+
       - name: run eleventy
         run: npm run build
 
