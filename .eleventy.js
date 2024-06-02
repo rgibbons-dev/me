@@ -6,6 +6,9 @@ const { DateTime } = require('luxon');
 // Import Eleventy's HTML `<base>` plugin (https://www.11ty.dev/docs/plugins/html-base/). If we deploy our site to a subdirectory (like how https://cypressSap.codeberg.page/11ty-zones-demo/ is in the `11ty-zones-demo` subdirectory), absolute URLs like `/about/` won't work as expected (that one would resolve to `https://cypressSap.codeberg.page/about/`). This plugin uses the `pathPrefix` (set down below) to automatically correct these throughout the project.
 const { EleventyHtmlBasePlugin } = require('@11ty/eleventy');
 
+// RSS plugin (https://www.11ty.dev/docs/plugins/rss/)
+const pluginRss = require("@11ty/eleventy-plugin-rss");
+
 module.exports = function (eleventyConfig) {
 	// Add the plugin we just imported
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
@@ -28,6 +31,8 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy('images');
 	// Copy `style` to `_site/style`
 	eleventyConfig.addPassthroughCopy('style');
+	// Add RSS
+	eleventyConfig.addPlugin(pluginRss);
 
 	return {
 		// Update this if you're deploying your site to a subdirectory. (https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix)
